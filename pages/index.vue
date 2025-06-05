@@ -1,242 +1,286 @@
 <template>
-    <AppHeader />
-    <div class="bg-white font-inter mt-12">
-        <!-- Mengubah mt-6 menjadi mt-20 (5rem) untuk mengakomodasi header sticky dengan tinggi h-20 -->
+  <AppHeader />
+  <div class="bg-white font-inter mt-12">
+    <!-- Mengubah mt-6 menjadi mt-20 (5rem) untuk mengakomodasi header sticky dengan tinggi h-20 -->
 
-        <!-- Hero Section -->
-        <section class="container mx-auto opacity-0 animate-fadeIn">
-            <div class="px-4 sm:px-6 lg:px-8"> <!-- Wrapper for horizontal padding, matching main content -->
-                <div
-                    class="py-12 md:py-16 flex flex-col md:flex-row items-center bg-teal-500 text-white rounded-lg px-4 sm:px-6 lg:px-8 shadow-lg">
-                    <!-- px-4 sm:px-6 lg:px-8 here is for the banner's internal content padding -->
-                    <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0 animate-slideInLeft">
-                        <h1 class="text-3xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4">
-                            Beli Beras Lebih Murah Di DABE!
-                        </h1>
-                        <p class="text-2xl sm:text-3xl lg:text-4xl font-bold">
-                            Langsung Dari Petani, Cek!
-                        </p>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center md:justify-end animate-slideInRight">
-                        <!-- Ganti dengan URL gambar petani yang relevan -->
-                        <img src="https://placehold.co/400x300/a0aec0/ffffff?text=Petani+Panen"
-                            alt="Petani memegang padi" class="rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md">
-                    </div>
+    <!-- Hero Section -->
+    <section class="container mx-auto opacity-0 animate-fadeIn">
+      <div class="px-4 sm:px-6 lg:px-8">
+        <!-- Wrapper for horizontal padding, matching main content -->
+        <div
+          class="py-12 md:py-16 flex flex-col md:flex-row items-center bg-teal-500 text-white rounded-lg px-4 sm:px-6 lg:px-8 shadow-lg"
+        >
+          <!-- px-4 sm:px-6 lg:px-8 here is for the banner's internal content padding -->
+          <div
+            class="md:w-1/2 text-center md:text-left mb-8 md:mb-0 animate-slideInLeft"
+          >
+            <h1
+              class="text-3xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4"
+            >
+              Beli Beras Lebih Murah Di DABE!
+            </h1>
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-bold">
+              Langsung Dari Petani, Cek!
+            </p>
+          </div>
+          <div
+            class="md:w-1/2 flex justify-center md:justify-end animate-slideInRight"
+          >
+            <!-- Ganti dengan URL gambar petani yang relevan -->
+            <img
+              src="https://placehold.co/400x300/a0aec0/ffffff?text=Petani+Panen"
+              alt="Petani memegang padi"
+              class="rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Main Content Area -->
+    <main
+      class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 opacity-0 animate-fadeIn animation-delay-300"
+    >
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Featured Product Section (Kiri) -->
+        <aside class="lg:w-1/3">
+          <div
+            class="bg-gray-300 h-96 lg:h-full flex items-center justify-center rounded-lg p-6 text-center sticky top-24"
+          >
+            <span class="text-xl font-semibold text-gray-700"
+              >Produk unggulan / paling laku</span
+            >
+            <!-- Konten produk unggulan bisa lebih detail di sini -->
+            <!-- Animasi opacity-0 animate-fadeInUp animation-delay-500 dihapus dari div ini untuk kembali ke versi yang lebih lama -->
+          </div>
+        </aside>
+
+        <!-- Product Grid (Kanan) -->
+        <div class="lg:w-2/3 hover:cursor-pointer">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+            Semua Produk
+          </h2>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <!-- Product Card Component atau Loop -->
+            <div
+              v-for="(product, index) in products"
+              :key="product.id"
+              class="product-card bg-white rounded-lg shadow-md overflow-hidden opacity-0 animate-fadeInUp"
+              :style="{ animationDelay: `${index * 100 + 600}ms` }"
+            >
+              <img
+                :src="product.image"
+                :alt="product.name"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-4">
+                <h3
+                  class="text-lg font-semibold text-gray-800 mb-1 truncate"
+                  :title="product.name"
+                >
+                  {{ product.name }}
+                </h3>
+                <p class="text-xl font-bold text-teal-600 mb-2">
+                  {{ formatCurrency(product.price) }}
+                </p>
+                <div class="flex items-center text-sm text-gray-600 mb-1">
+                  <svg
+                    class="w-4 h-4 text-yellow-400 mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    ></path>
+                  </svg>
+                  <span>{{ product.rating }}</span>
+                  <span class="mx-1">|</span>
+                  <span>{{ product.location }}</span>
                 </div>
+                <!-- <button
+                  class="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                >
+                  Beli Sekarang
+                </button> -->
+              </div>
             </div>
-        </section>
-        <!-- Main Content Area -->
-        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 opacity-0 animate-fadeIn animation-delay-300">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Featured Product Section (Kiri) -->
-                <aside class="lg:w-1/3">
-                    <div
-                        class="bg-gray-300 h-96 lg:h-full flex items-center justify-center rounded-lg p-6 text-center sticky top-24">
-                        <span class="text-xl font-semibold text-gray-700">Produk unggulan / paling laku</span>
-                        <!-- Konten produk unggulan bisa lebih detail di sini -->
-                        <!-- Animasi opacity-0 animate-fadeInUp animation-delay-500 dihapus dari div ini untuk kembali ke versi yang lebih lama -->
-                    </div>
-                </aside>
-
-                <!-- Product Grid (Kanan) -->
-                <section class="lg:w-2/3">
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Semua Produk</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Product Card Component atau Loop -->
-                        <div v-for="(product, index) in products" :key="product.id"
-                            class="product-card bg-white rounded-lg shadow-md overflow-hidden opacity-0 animate-fadeInUp"
-                            :style="{ animationDelay: `${index * 100 + 600}ms` }">
-                            <img :src="product.image" :alt="product.name" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold text-gray-800 mb-1 truncate" :title="product.name">
-                                    {{ product.name }}
-                                </h3>
-                                <p class="text-xl font-bold text-teal-600 mb-2">{{ formatCurrency(product.price) }}</p>
-                                <div class="flex items-center text-sm text-gray-600 mb-1">
-                                    <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <span>{{ product.rating }}</span>
-                                    <span class="mx-1">|</span>
-                                    <span>{{ product.location }}</span>
-                                </div>
-                                <button
-                                    class="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
-                                    Beli Sekarang
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
-    <AppFooter />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <AppFooter />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const products = ref([
-                {
-                    id: 1,
-                    name: 'Beras Premium Maju Sari',
-                    price: 15000,
-                    rating: 4.8,
-                    location: 'Kab. Nganjuk',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+1',
-                },
-                {
-                    id: 2,
-                    name: 'Beras Organik Sehat Jaya',
-                    price: 18500,
-                    rating: 4.9,
-                    location: 'Kab. Sleman',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+2',
-                },
-                {
-                    id: 3,
-                    name: 'Beras Kepala Super Enak',
-                    price: 16000,
-                    rating: 4.7,
-                    location: 'Kab. Klaten',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+3',
-                },
-                {
-                    id: 4,
-                    name: 'Beras Pulen Wangi Melati',
-                    price: 17000,
-                    rating: 4.8,
-                    location: 'Kab. Cianjur',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+4',
-                },
-                {
-                    id: 5,
-                    name: 'Beras Merah Organik Sejahtera',
-                    price: 22000,
-                    rating: 4.6,
-                    location: 'Kab. Boyolali',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+5',
-                },
-                {
-                    id: 6,
-                    name: 'Beras Hitam Asli Nusantara',
-                    price: 25000,
-                    rating: 4.9,
-                    location: 'Kab. Magelang',
-                    image: 'https://placehold.co/300x200/e2e8f0/333333?text=Beras+6',
-                },
+  {
+    id: 1,
+    name: "Beras Premium Maju Sari",
+    price: 15000,
+    rating: 4.8,
+    location: "Kab. Nganjuk",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+1",
+  },
+  {
+    id: 2,
+    name: "Beras Organik Sehat Jaya",
+    price: 18500,
+    rating: 4.9,
+    location: "Kab. Sleman",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+2",
+  },
+  {
+    id: 3,
+    name: "Beras Kepala Super Enak",
+    price: 16000,
+    rating: 4.7,
+    location: "Kab. Klaten",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+3",
+  },
+  {
+    id: 4,
+    name: "Beras Pulen Wangi Melati",
+    price: 17000,
+    rating: 4.8,
+    location: "Kab. Cianjur",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+4",
+  },
+  {
+    id: 5,
+    name: "Beras Merah Organik Sejahtera",
+    price: 22000,
+    rating: 4.6,
+    location: "Kab. Boyolali",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+5",
+  },
+  {
+    id: 6,
+    name: "Beras Hitam Asli Nusantara",
+    price: 25000,
+    rating: 4.9,
+    location: "Kab. Magelang",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+6",
+  },
 ]);
 
 const formatCurrency = (value: number): string => {
-    return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-    }).format(value).replace('Rp', 'Rp '); // Menambahkan spasi setelah Rp dan memastikan tidak ada desimal
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })
+    .format(value)
+    .replace("Rp", "Rp "); // Menambahkan spasi setelah Rp dan memastikan tidak ada desimal
 };
 
 // Set judul halaman dan meta deskripsi
 useHead({
-    title: 'Beranda - DABE | Beli Beras Langsung Dari Petani',
-    meta: [
-        { name: 'description', content: 'Temukan berbagai jenis beras berkualitas langsung dari petani dengan harga terbaik di DABE. Belanja mudah, aman, dan mendukung petani lokal.' }
-    ]
+  title: "Beranda - DABE | Beli Beras Langsung Dari Petani",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Temukan berbagai jenis beras berkualitas langsung dari petani dengan harga terbaik di DABE. Belanja mudah, aman, dan mendukung petani lokal.",
+    },
+  ],
 });
-
 </script>
 
 <style scoped>
-/* Gaya spesifik untuk komponen ini jika diperlukan, 
+/* Gaya spesifik untuk komponen ini jika diperlukan,
    namun usahakan semaksimal mungkin menggunakan kelas Tailwind */
 /* Pastikan font Inter sudah diimpor di file CSS utama Anda atau di index.html */
 .font-inter {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .product-card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .product-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.15), 0 6px 10px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.15),
+    0 6px 10px -4px rgba(0, 0, 0, 0.1);
 }
 
 /* Animasi Kustom */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fadeIn {
-    animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fadeInUp {
-    animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 @keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .animate-slideInLeft {
-    animation: slideInLeft 0.7s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    /* Added delay */
+  animation: slideInLeft 0.7s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  /* Added delay */
 }
 
 @keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .animate-slideInRight {
-    animation: slideInRight 0.7s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    /* Added delay */
+  animation: slideInRight 0.7s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    forwards;
+  /* Added delay */
 }
 
 .animation-delay-300 {
-    animation-delay: 300ms;
+  animation-delay: 300ms;
 }
 
 .animation-delay-500 {
-    animation-delay: 500ms;
+  animation-delay: 500ms;
 }
 </style>
 /* Tambahkan kelas delay lain jika diperlukan */
