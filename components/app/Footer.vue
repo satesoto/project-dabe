@@ -4,9 +4,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="mb-6 md:mb-0">
           <a href="#" class="text-white text-3xl font-bold flex items-center mb-4">
-            <svg class="h-10 w-auto mr-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
+            <img src="/assets/img/logo/dabe_putih.png" alt="DABE Logo" class="h-10 w-auto mr-2"> <!-- Logo ditambahkan di sini -->
             DABE
           </a>
           <p class="text-sm leading-relaxed">

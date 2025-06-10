@@ -4,9 +4,7 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0">
                     <a href="#" class="text-white text-3xl font-bold flex items-center">
-                        <svg class="h-10 w-auto mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                        </svg>
+                        <img src="/assets/img/logo/dabe_putih.png" alt="DABE Logo" class="h-10 w-auto mr-2"> <!-- Tambahkan tag img di sini -->
                         DABE
                     </a>
                 </div>
@@ -28,7 +26,7 @@
 
                 <div class="hidden md:flex items-center space-x-6 text-white">
                     <a href="#" class="hover:text-teal-100 font-medium relative group"><span>Beranda</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-teal-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span></a>
-                    <a href="#" class="hover:text-teal-100 font-medium relative group"><span>Infografis</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-teal-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span></a>
+                    <a href="#" class="hover:text-teal-100 font-medium relative group"><span>Grafik</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-teal-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span></a>
                     <a href="#" class="hover:text-teal-100 font-medium relative group"><span>Peta</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-teal-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span></a>
                 </div>
 
@@ -66,8 +64,8 @@
 
         <transition name="slide-fade">
             <div v-if="mobileMenuOpen" class="md:hidden bg-teal-500 pb-3 shadow-lg">
-                <a href="#" class="block px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">Beranda</a>
-                <a href="#" class="block px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">Infografis</a>
+                <a href="#" class="block px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">Beranda</a> <!-- Perbaiki typo Infografis menjadi Grafik -->
+                <a href="#" class="block px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">Grafik</a>
                 <a href="#" class="block px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">Peta</a>
                 <div class="border-t border-teal-400 mt-2 pt-2">
                     <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-teal-600 transition-colors duration-150">

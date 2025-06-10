@@ -106,6 +106,4 @@ const registerUser = async () => {
     success.value = ''
   }
 }
-
-
 </script>

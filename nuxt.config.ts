@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['', '@nuxtjs/tailwindcss'],
-  css: ['~/assets/css/main.css'],
+  modules: ['', '@nuxtjs/tailwindcss', 'nuxt-charts'],
+  css: ['~/assets/css/main.css', 'leaflet/dist/leaflet.css',],
   vite: {
     server: {
       allowedHosts: ['c0a4-182-253-126-194.ngrok-free.app']
