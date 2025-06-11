@@ -81,7 +81,7 @@
                 <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Penjualan 3 Bulan Terakhir</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div class="h-64 md:h-72">
-                        <AppChartsDasboardDonut />
+                        <AppChartsDashboardDonut />
                     </div>
                     <div class="h-64 md:h-72">
                         <AppChartsDashboardBar />
@@ -114,7 +114,7 @@ const formatCompactNumber = (num) => {
     return num.toString();
 };
 const handleWithdraw = () => {
-    navigateTo('/penjual/withdraw'); // Arahkan ke halaman withdraw
+    navigateTo('/dashboard/withdraw'); // Arahkan ke halaman withdraw di dalam dashboard
 };
 useHead({ title: 'Dashboard - DABE' });
 </script>
