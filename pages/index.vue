@@ -4,7 +4,7 @@
     <!-- Mengubah mt-6 menjadi mt-20 (5rem) untuk mengakomodasi header sticky dengan tinggi h-20 -->
 
     <!-- Hero Section -->
-    <header class="container mx-auto opacity-0 animate-fadeIn">
+    <section class="container mx-auto opacity-0 animate-fadeIn">
       <div class="px-4 sm:px-6 lg:px-8">
         <!-- Wrapper for horizontal padding, matching main content -->
         <div
@@ -35,104 +35,76 @@
           </div>
         </div>
       </div>
-    </header>
+    </section>
     <!-- Main Content Area -->
     <main
       class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 opacity-0 animate-fadeIn animation-delay-300"
     >
       <div class="flex flex-col lg:flex-row gap-8">
         <!-- Featured Product Section (Kiri) -->
+        <aside class="lg:w-1/3">
+          <div
+            class="bg-gray-300 h-96 lg:h-full flex items-center justify-center rounded-lg p-6 text-center sticky top-24"
+          >
+            <span class="text-xl font-semibold text-gray-700"
+              >Produk unggulan / paling laku</span
+            >
+            <!-- Konten produk unggulan bisa lebih detail di sini -->
+            <!-- Animasi opacity-0 animate-fadeInUp animation-delay-500 dihapus dari div ini untuk kembali ke versi yang lebih lama -->
+          </div>
+        </aside>
 
         <!-- Product Grid (Kanan) -->
-        <section class="w-full">
+        <section class="lg:w-2/3">
           <h2 class="text-2xl font-semibold text-gray-800 mb-6">
             Semua Produk
           </h2>
           <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <!-- Product Card Component atau Loop -->
-            <NuxtLink
-              v-for="(product, index) in paginatedProducts"
+            <div
+              v-for="(product, index) in products"
               :key="product.id"
-              :to="`/produk/${product.id}`"
-              class="product-card-link block"
+              class="product-card bg-white rounded-lg shadow-md overflow-hidden opacity-0 animate-fadeInUp"
+              :style="{ animationDelay: `${index * 100 + 600}ms` }"
             >
-              <div
-                class="product-card bg-white rounded-lg shadow-md overflow-hidden opacity-0 animate-fadeInUp h-full flex flex-col"
-                :style="{ animationDelay: `${index * 100 + 600}ms` }"
-              >
-                <img
-                  :src="product.image"
-                  :alt="product.name"
-                  class="w-full h-48 object-cover"
-                />
-                <div class="p-4 flex flex-col flex-grow">
-                  <h3
-                    class="text-lg font-semibold text-gray-800 mb-1 truncate"
-                    :title="product.name"
+              <img
+                :src="product.image"
+                :alt="product.name"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-4">
+                <h3
+                  class="text-lg font-semibold text-gray-800 mb-1 truncate"
+                  :title="product.name"
+                >
+                  {{ product.name }}
+                </h3>
+                <p class="text-xl font-bold text-teal-600 mb-2">
+                  {{ formatCurrency(product.price) }}
+                </p>
+                <div class="flex items-center text-sm text-gray-600 mb-1">
+                  <svg
+                    class="w-4 h-4 text-yellow-400 mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    {{ product.name }}
-                  </h3>
-                  <p class="text-xl font-bold text-teal-600 mb-2">
-                    {{ formatCurrency(product.price) }}
-                  </p>
-                  <div
-                    class="flex items-center text-sm text-gray-600 mb-1 mt-auto"
-                  >
-                    <!-- mt-auto pushes this to bottom -->
-                    <svg
-                      class="w-4 h-4 text-yellow-400 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      ></path>
-                    </svg>
-                    <span>{{ product.rating }}</span>
-                    <span class="mx-1">|</span>
-                    <span>{{ product.location }}</span>
-                  </div>
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    ></path>
+                  </svg>
+                  <span>{{ product.rating }}</span>
+                  <span class="mx-1">|</span>
+                  <span>{{ product.location }}</span>
                 </div>
+                <button
+                  class="w-full mt-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                >
+                  Beli Sekarang
+                </button>
               </div>
-            </NuxtLink>
-          </div>
-
-          <!-- Pagination Controls -->
-          <div
-            class="mt-12 flex justify-center items-center space-x-2"
-            v-if="totalPages > 1"
-          >
-            <button
-              @click="prevPage"
-              :disabled="currentPage === 1"
-              class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Sebelumnya
-            </button>
-
-            <button
-              v-for="page in totalPages"
-              :key="page"
-              @click="goToPage(page)"
-              :class="[
-                'px-4 py-2 text-sm font-medium rounded-md',
-                currentPage === page
-                  ? 'bg-teal-500 text-white border border-teal-500'
-                  : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50',
-              ]"
-            >
-              {{ page }}
-            </button>
-
-            <button
-              @click="nextPage"
-              :disabled="currentPage === totalPages"
-              class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Berikutnya
-            </button>
+            </div>
           </div>
         </section>
       </div>
@@ -141,37 +113,58 @@
   <AppFooter />
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { productsData } from "../src/api/products";
-import type { Product } from "../src/api/products";
+import { ref } from "vue";
 
-const currentPage = ref(1);
-const itemsPerPage = ref(24); // Tampilkan 6 produk per halaman
-
-const products = ref<Product[]>(productsData);
-
-// Computed property untuk produk yang dipaginasi
-const paginatedProducts = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage.value;
-  const end = start + itemsPerPage.value;
-  return products.value.slice(start, end);
-});
-
-// Computed property untuk total halaman
-const totalPages = computed(() => {
-  return Math.ceil(products.value.length / itemsPerPage.value);
-});
-
-// Fungsi navigasi paginasi
-const nextPage = () => {
-  if (currentPage.value < totalPages.value) currentPage.value++;
-};
-const prevPage = () => {
-  if (currentPage.value > 1) currentPage.value--;
-};
-const goToPage = (page: number) => {
-  currentPage.value = page;
-};
+const products = ref([
+  {
+    id: 1,
+    name: "Beras Premium Maju Sari",
+    price: 15000,
+    rating: 4.8,
+    location: "Kab. Nganjuk",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+1",
+  },
+  {
+    id: 2,
+    name: "Beras Organik Sehat Jaya",
+    price: 18500,
+    rating: 4.9,
+    location: "Kab. Sleman",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+2",
+  },
+  {
+    id: 3,
+    name: "Beras Kepala Super Enak",
+    price: 16000,
+    rating: 4.7,
+    location: "Kab. Klaten",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+3",
+  },
+  {
+    id: 4,
+    name: "Beras Pulen Wangi Melati",
+    price: 17000,
+    rating: 4.8,
+    location: "Kab. Cianjur",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+4",
+  },
+  {
+    id: 5,
+    name: "Beras Merah Organik Sejahtera",
+    price: 22000,
+    rating: 4.6,
+    location: "Kab. Boyolali",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+5",
+  },
+  {
+    id: 6,
+    name: "Beras Hitam Asli Nusantara",
+    price: 25000,
+    rating: 4.9,
+    location: "Kab. Magelang",
+    image: "https://placehold.co/300x200/e2e8f0/333333?text=Beras+6",
+  },
+]);
 
 const formatCurrency = (value: number): string => {
   return new Intl.NumberFormat("id-ID", {
@@ -203,10 +196,6 @@ useHead({
 /* Pastikan font Inter sudah diimpor di file CSS utama Anda atau di index.html */
 .font-inter {
   font-family: "Inter", sans-serif;
-}
-
-.product-card-link {
-  text-decoration: none; /* Menghilangkan garis bawah default dari link */
 }
 
 .product-card {
