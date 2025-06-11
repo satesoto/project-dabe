@@ -1,10 +1,5 @@
 <template>
   <section class="w-full h-screen flex justify-center items-center bg-white font-[Poppins]">
-    <NuxtLink to="/" class="absolute top-6 left-6 sm:top-8 sm:left-8 z-20">
-        <img src="/assets/img/logo/dabe_hijau.png" alt="DABE Logo" class="h-10 sm:h-12 w-auto">
-        <!-- Logo DABE Hijau -->
-    </NuxtLink>
-
     <div class="w-full max-w-[1400px] grid grid-cols-2 gap-12 px-16">
       <!-- KIRI: Gambar + Teks -->
       <div class="flex flex-col items-center justify-center text-center">

@@ -23,15 +23,15 @@
             </div>
 
             <div class="bg-white p-4 md:p-6 rounded-xl shadow-sm">
-                <AppChartsLine />
+                <AppChartsLineChart />
             </div>
 
             <div class="lg:col-span-2 bg-white p-4 md:p-6 rounded-xl shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="h-80">
-                    <AppChartsBar />
+                    <AppChartsBarChart />
                 </div>
                 <div class="h-80">
-                    <AppChartsDonut />
+                    <AppChartsDonutChart />
                 </div>
             </div>
 

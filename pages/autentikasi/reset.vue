@@ -1,9 +1,5 @@
 <template>
   <div class="w-screen h-screen bg-[conic-gradient(from_22deg,#41b49f_50%,#22AB97_50%)]">
-    <NuxtLink to="/" class="absolute top-6 left-6 sm:top-8 sm:left-8 z-20">
-        <img src="/assets/img/logo/dabe_putih.png" alt="DABE Logo" class="h-10 sm:h-12 w-auto">
-    </NuxtLink>
-
     <div class="min-h-screen flex justify-center items-center font-[Poppins]">
       <form @submit.prevent="resetPassword"
         class="p-8 bg-white flex flex-col gap-4 z-10 rounded-md w-full max-w-[430px]">
