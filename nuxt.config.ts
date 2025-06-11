@@ -6,12 +6,12 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "leaflet/dist/leaflet.css"],
   vite: {
     server: {
-      allowedHosts: ["c0a4-182-253-126-194.ngrok-free.app"],
+      allowedHosts: ["*"],
     },
   },
   runtimeConfig: {
     public: {
-      apiBase: "https://9d89-182-253-126-194.ngrok-free.app/api",
+      apiBase: "http://localhost:8000/api",
     },
   },
 });

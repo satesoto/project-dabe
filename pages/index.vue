@@ -4,7 +4,7 @@
     <!-- Mengubah mt-6 menjadi mt-20 (5rem) untuk mengakomodasi header sticky dengan tinggi h-20 -->
 
     <!-- Hero Section -->
-    <section class="container mx-auto opacity-0 animate-fadeIn">
+    <header class="container mx-auto opacity-0 animate-fadeIn">
       <div class="px-4 sm:px-6 lg:px-8">
         <!-- Wrapper for horizontal padding, matching main content -->
         <div
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </header>
     <!-- Main Content Area -->
     <main
       class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 opacity-0 animate-fadeIn animation-delay-300"
@@ -49,7 +49,7 @@
             Semua Produk
           </h2>
           <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
             <!-- Product Card Component atau Loop -->
             <NuxtLink
@@ -146,7 +146,7 @@ import { productsData } from "../src/api/products";
 import type { Product } from "../src/api/products";
 
 const currentPage = ref(1);
-const itemsPerPage = ref(32); // Tampilkan 6 produk per halaman
+const itemsPerPage = ref(24); // Tampilkan 6 produk per halaman
 
 const products = ref<Product[]>(productsData);
 
