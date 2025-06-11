@@ -8,7 +8,7 @@
           </h1>
 
           <button class="py-2 w-full shadow-md border border-gray-300 font-bold rounded-md flex items-center justify-center text-[#7C817FC2] mb-2">
-            <img src="../assets/img/google.png" alt="" />Google
+            <img src="/assets/img/logo/google.png" alt="" />Google
           </button>
 
           <div class="relative mb-4">
@@ -26,7 +26,7 @@
           <div class="flex flex-col gap-1">
             <label class="text-sm text-gray-500">Kata Sandi</label>
             <input v-model="password" type="password" class="bg-[#48967E0F] border p-3 font-semibold rounded-md shadow-md outline-none focus:border-[#22AB97]" placeholder="*********" />
-            <a href="#" class="text-right text-xs text-[#22AB97]">Lupa Kata Sandi?</a>
+            <NuxtLink to="/autentikasi/ganti" class="text-right text-xs text-[#22AB97]">Lupa Kata Sandi?</NuxtLink>
           </div>
 
           <div class="flex flex-col gap-4">
@@ -35,7 +35,7 @@
             </button>
 
             <p class="text-sm text-center">
-              Belum punya akun DABE? <a href="/register" class="text-[#22AB97]">Buat</a>
+              Belum punya akun DABE? <NuxtLink to="/autentikasi/register" class="text-[#22AB97]">Buat</NuxtLink>
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ const loginUser = async () => {
   try {
     error.value = ''
 
-    const res = await $fetch('/user/login', {
+    const res = await $fetch('api/user/login', {
       baseURL: config.public.apiBase,
       method: 'POST',
       body: {

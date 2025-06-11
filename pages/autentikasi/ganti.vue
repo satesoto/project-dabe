@@ -24,7 +24,7 @@
             <button @click="sendResetLink" class="py-2 w-full font-bold rounded-md bg-[#22AB97] text-white hover:bg-[#1b9786]">
               Kirim
             </button>
-            <a href="/login" class="text-sm text-center text-[#22AB97]">Kembali ke Halaman Masuk</a>
+            <NuxtLink to="/autentikasi/login" class="text-sm text-center text-[#22AB97]">Kembali ke Halaman Masuk</NuxtLink>
           </div>
 
           <p v-if="success" class="text-green-600 text-sm text-center">{{ success }}</p>

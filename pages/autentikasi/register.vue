@@ -3,7 +3,7 @@
     <div class="w-full max-w-[1400px] grid grid-cols-2 gap-12 px-16">
       <!-- KIRI: Gambar + Teks -->
       <div class="flex flex-col items-center justify-center text-center">
-        <img src="../assets/img/register.png" alt="Register" class="w-full max-w-[600px] h-auto object-contain mb-8" />
+        <img src="/assets/img/register.png" alt="Register" class="w-full max-w-[600px] h-auto object-contain mb-8" />
         <p class="text-2xl font-semibold text-gray-800 leading-snug">
           Yuk, Beli Beras Langsung Dari Sawah,<br />
           Harga Adil Untuk Semua
@@ -14,13 +14,13 @@
       <div class="bg-white p-12 border rounded-xl shadow-xl w-full max-w-[520px]">
         <h1 class="text-3xl font-bold text-center">Daftar Sekarang</h1>
         <p class="text-center text-base mb-6 text-md">
-          Sudah punya akun DABE? <a href="#" class="text-[#22AB97] font-semibold">Masuk</a>
+          Sudah punya akun DABE? <NuxtLink to="/autentikasi/login" class="text-[#22AB97] font-semibold">Masuk</NuxtLink>
         </p>
 
         <!-- Tombol Google (opsional, bisa aktifkan nanti) -->
         <button
           class="py-2 w-full shadow-md border border-gray-300 font-bold rounded-md flex items-center justify-center text-[#7C817FC2] mb-5">
-          <img src="../assets/img/google.png" alt="" />Google
+          <img src="/assets/img/logo/google.png" alt="" />Google
         </button>
 
         <div class="relative mb-6">
@@ -31,19 +31,19 @@
         <!-- Formulir -->
         <form @submit.prevent="registerUser" class="space-y-5">
           <div>
-            <label class="text-sm text-gray-500">Nama Pengguna</label>
+            <label for="name" class="text-sm text-gray-500">Nama Pengguna</label>
             <input v-model="name" type="text" placeholder="Dabeyy"
-              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" />
+              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" id="name" required />
           </div>
           <div>
-            <label class="text-sm text-gray-500">Email</label>
+            <label for="email" class="text-sm text-gray-500">Email</label>
             <input v-model="email" type="email" placeholder="context@dabe.com"
-              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" />
+              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" id="email" required />
           </div>
           <div>
-            <label class="text-sm text-gray-500">Kata Sandi</label>
+            <label for="password" class="text-sm text-gray-500">Kata Sandi</label>
             <input v-model="password" type="password" placeholder="********"
-              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" />
+              class="w-full p-4 rounded-md border shadow-md bg-[#48967E0F] font-medium outline-none focus:border-[#22AB97]" id="password" required />
           </div>
           <div>
             <label class="text-sm text-gray-500">Konfirmasi Kata Sandi</label>
@@ -59,11 +59,11 @@
 
         <p class="text-center text-sm mt-4">
           Dengan mendaftar, saya menyetujui
-          <a href="#" class="text-[#22AB97] font-bold">Syarat & Ketentuan</a> serta
-          <a href="#" class="text-[#22AB97] font-bold">Kebijakan Privasi DABE</a>
+          <NuxtLink to="/autentikasi/policy" class="text-[#22AB97] font-bold">Syarat & Ketentuan</NuxtLink> serta
+          <NuxtLink to="/autentikasi/policy" class="text-[#22AB97] font-bold">Kebijakan Privasi DABE</NuxtLink>
         </p>
 
-        <p v-if="error" class="text-red-500 text-center mt-4">{{ error }}</p>
+        <p v-if="error" class="text-red-600 text-center mt-4">{{ error }}</p>
         <p v-if="success" class="text-green-600 text-center mt-4">{{ success }}</p>
       </div>
     </div>
@@ -72,6 +72,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { navigateTo } from '#app' // Import navigateTo
 
 const name = ref('')
 const email = ref('')
@@ -83,27 +84,45 @@ const success = ref('')
 const config = useRuntimeConfig()
 
 const registerUser = async () => {
+  error.value = '' // Reset error message
+  success.value = '' // Reset success message
+
   try {
-    const { data, error: fetchError } = await useFetch('/user/register', {
+    const { data, error: fetchError } = await useFetch('api/user/register', { // Hapus 'api/' jika apiBase sudah lengkap
       baseURL: config.public.apiBase,
       method: 'POST',
       body: {
         name: name.value,
         email: email.value,
         password: password.value,
-        konfirmasi_password: password_confirmation.value
+        konfirmasi_password: password_confirmation.value // Umumnya backend mengharapkan 'password_confirmation'
       }
     })
 
     if (fetchError.value) {
-      throw new Error(fetchError.value.data?.message || 'Registrasi gagal')
+      // Tangani error dari API, misalnya validasi atau error server
+      let errorMessage = 'Registrasi gagal. Silakan coba lagi.';
+      if (fetchError.value.data && typeof fetchError.value.data.message === 'string') {
+        errorMessage = fetchError.value.data.message;
+      } else if (fetchError.value.data && typeof fetchError.value.data.errors === 'object') {
+        errorMessage = Object.values(fetchError.value.data.errors).flat().join(' ');
+      } else if (fetchError.value.message) {
+        errorMessage = fetchError.value.message;
+      }
+      error.value = errorMessage;
+    } else {
+      success.value = 'Registrasi berhasil! Anda akan diarahkan ke halaman login.'
+      // Arahkan ke halaman login setelah beberapa saat agar pengguna bisa membaca pesan sukses
+      setTimeout(() => {
+        navigateTo({
+          path: '/autentikasi/aktifasi-email',
+          query: { email: email.value, username: name.value } // Kirim email dan username sebagai query params
+        });
+      }, 2000); // Tunggu 2 detik sebelum redirect
     }
-
-    success.value = 'Registrasi berhasil, silakan cek email!'
-    error.value = ''
   } catch (err) {
-    error.value = err.message
-    success.value = ''
+    // Ini menangkap error yang tidak terduga dari useFetch atau error javascript lainnya
+    error.value = err.message || 'Terjadi kesalahan saat melakukan registrasi.'
   }
 }
 </script>

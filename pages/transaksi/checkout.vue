@@ -1,4 +1,5 @@
 <template>
+    <AppHeaderSimple />
     <div class="bg-gray-100 min-h-screen py-8">
         <div class="container mx-auto px-4 max-w-4xl">
 
@@ -85,6 +86,7 @@
 
         </div>
     </div>
+    <AppFooter />
 </template>
 
 <script setup>
