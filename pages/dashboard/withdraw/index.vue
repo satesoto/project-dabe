@@ -1,4 +1,5 @@
 <template>
+    <AppHeaderPenjual />
     <div class="bg-slate-50 min-h-screen p-4 sm:p-8 flex flex-col items-center font-sans">
         <div class="w-full max-w-2xl mb-4">
             <NuxtLink to="/dashboard"

@@ -1,4 +1,5 @@
 <template>
+    <AppHeader />
     <div class="bg-gray-100 min-h-screen py-8">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="bg-white p-6 rounded-lg shadow-sm mb-6">

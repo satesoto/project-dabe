@@ -1,5 +1,7 @@
 <template>
+  <AppHeaderPenjual />
   <ProductForm mode="edit" :modelValue="produk" @submit="handleUpdate" />
+  <AppFooter />
 </template>
 
 <script setup>

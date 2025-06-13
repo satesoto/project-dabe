@@ -3,7 +3,10 @@
         <div class="container mx-auto flex items-center justify-between">
 
             <h1 class="text-xl font-semibold text-gray-700">
-                Seller Operation
+                <NuxtLink to="/dashboard" class="flex items-center space-x-2">
+                    <img src="/assets/img/logo/dabe_hijau.png" alt="DABE Logo" class="h-8 w-auto"> <!-- Sesuaikan path dan ukuran logo -->
+                    <span class="hidden sm:inline">Dashboard</span>
+                </NuxtLink>
             </h1>
 
             <div class="relative" ref="dropdownRef">
@@ -31,7 +34,7 @@
 
                         <ul class="py-1">
                             <li>
-                                <NuxtLink to="/profil" class="dropdown-item">
+                                <NuxtLink to="/dashboard/profil-penjual" class="dropdown-item">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
@@ -41,7 +44,7 @@
                                 </NuxtLink>
                             </li>
                             <li>
-                                <NuxtLink to="/penjual/produk" class="dropdown-item">
+                                <NuxtLink to="/dashboard/produk" class="dropdown-item">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">

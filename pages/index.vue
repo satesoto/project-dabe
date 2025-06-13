@@ -84,7 +84,7 @@ const isLoading = ref(false);
 const allProducts = ref(productsData); // semua data
 const displayCount = ref(15); // jumlah yang ditampilkan
 
-const products = computed(() => allProducts.value.slice(0, displayCount.value));
+const products = computed(() => allProducts.value.slice(5, displayCount.value));
 
 const canLoadMore = computed(
 	() => displayCount.value < allProducts.value.length && !isLoading.value

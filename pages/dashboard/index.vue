@@ -122,7 +122,7 @@ const fetchFinancialData = async () => {
         }
 
         // Ganti '/api/dashboard/keuangan' dengan endpoint API Anda yang sebenarnya
-        const { data: financialData, error: fetchError } = await useFetch('/api/dashboard/keuangan', {
+        const { data: financialData, error: fetchError } = await useFetch('/api/ringkasan', {
             baseURL: config.public.apiBase,
             method: 'GET',
             headers: {
@@ -134,9 +134,11 @@ const fetchFinancialData = async () => {
             throw new Error(fetchError.value.data?.message || fetchError.value.message || 'Gagal mengambil data keuangan.');
         }
 
-        saldo.value = financialData.value?.saldo || 0;
-        totalPenjualan.value = financialData.value?.totalPenjualan || 0;
-        pendapatanBulanan.value = financialData.value?.pendapatanBulanan || 0;
+        // Menyesuaikan dengan struktur key dari JSON yang diberikan
+        // Misalnya, jika API mengembalikan total_saldo, total_pendapatan, pendapatan_bulanan
+        saldo.value = financialData.value?.total_saldo || 0;
+        totalPenjualan.value = financialData.value?.total_pendapatan || 0;
+        pendapatanBulanan.value = financialData.value?.pendapatan_bulanan || 0;
 
     } catch (err) {
         error.value = err.message;

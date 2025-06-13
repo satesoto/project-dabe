@@ -1,4 +1,5 @@
 <template>
+  <AppHeaderPenjual />
   <div class="bg-slate-100 min-h-screen flex items-center justify-center p-4 font-sans">
     
     <div class="w-full max-w-xl animate-fade-in-up">
